@@ -243,3 +243,6 @@ If you found this project useful, please consider giving it a ⭐ on GitHub.
 ## 📄 License
 
 This project is licensed under the MIT License.
+=======
+# Blogify
+Developed a full-stack blog platform using Node.js, Express.js, MongoDB, and EJS, featuring user authentication, CRUD operations for blogs, image uploads with Multer, commenting functionality, responsive UI, and Docker-based deployment following the MVC architecture.
