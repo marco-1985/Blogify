@@ -1,0 +1,198 @@
+               app.js
+const path = require('path');
+const express=require('express');
+const UserRoute=require('./routes/user');
+const mongoose=require('mongoose');
+const app=express();
+const PORT=8000;
+mongoose.connect('mongodb://localhost:27017/blogify')
+.then((e)=>console.log("MongoDB Connected"))
+app.set('view engine','ejs')
+app.set('views',path.resolve('./views'));
+app.get('/',(req,res)=>{
+    res.render("home");
+})
+app.use(express.urlencoded({extended:false}));
+app.use("/user",UserRoute);
+app.listen(PORT,()=> console.log(`Server is started on http://localhost:${PORT}`));
+
+                  views/partials/home.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+     <title>Blog App</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <%- include('./partials/scripts') %>
+</body>
+</html>
+
+                     views/partials/scripts.ejs
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+                       views/partials/nav.ejs
+        isme bas nave vala part uthakr dal do
+                    views/home.ejs
+
+                    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+     <title>Blog App</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <%- include('./partials/scripts') %>
+</body>
+</html>
+
+                     views/signin.ejs
+                     <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>SignIn</title>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+    <div class="container">
+      <form class="mt-4" action="/user/signin" method="post">
+        <div class="mb-3">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+
+</html>
+
+                         views/signup.ejs
+
+                         <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <title>Signup</title>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+    <div class="container">
+      <form class="mt-4" action="/user/signup" method="post">
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullName" />
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+
+</html>
+
+              routes/user.ejs
+const express=require('express');
+const User=require('../models/user')
+const router=express.Router();
+router.get('/signin',(req,res)=>{
+    return res.render('signin');
+});
+router.get('/signup',(req,res)=>{
+    return res.render('signup');
+});
+router.post("/signin",async(req,res)=>{
+    const {email,password} = req.body;
+  const user=await User.matchPassword(email,password);
+  console.log("User",user);
+  return res.redirect("/")
+})
+router.post('/signup',async(req,res)=>{
+    const {fullName,email,password}=req.body;
+    console.log(req.body)
+    await User.create({
+        fullName,
+        email,
+        password,
+    });
+    return res.redirect("/");
+});
+module.exports=router;
+
+                   models/user.js
+
+            const { Schema,model } = require('mongoose');
+const {createHmac, randomBytes} = require('crypto');
+const { findSourceMap } = require('module');
+const userSchema = new Schema({
+    fullName: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    salt: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    profileImage: {
+        type: String,
+        default: '/images/default.jpg',
+    },
+    role: {
+        type: String,
+        enum: ["USER", "ADMIN"],
+        default: 'USER',
+    },
+
+}, { timestamps: true });
+userSchema.pre("save",async function(){
+    const user=this;
+    if(!user.isModified("password")) return ;
+    const salt=randomBytes(16).toString();
+    const hashedPassword=createHmac('sha256',salt)
+    .update(user.password)
+    .digest("hex");
+    this.salt=salt;
+    this.password=hashedPassword;
+})
+userSchema.static("matchPassword",async function(email,password){
+    const user=await this.findOne({email});
+    if(!user) throw new Error("User not found");
+    const salt =user.salt;
+    const hashPassword=user.password;
+    const userProvideHash=createHmac("sha256",salt)
+    .update(password)
+    .digest("hex");
+    if(hashPassword!==userProvideHash) throw new Error("Incorrect Password");
+    return user;
+})
+const User=model('user',userSchema);
+module.exports=User;

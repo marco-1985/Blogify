@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+    <title>Create New Blog</title>
+</head>
+
+<body>
+
+    <%- include('./partials/nav') %>
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+
+                    <div class="card shadow-lg border-0 rounded-4">
+
+                        <div class="card-body p-5">
+
+                            <div class="text-center mb-5">
+
+                                <h1 class="fw-bold">
+                                    ✍️ Create New Blog
+                                </h1>
+
+                                <p class="text-muted">
+                                    Share your knowledge with the community.
+                                </p>
+
+                            </div>
+
+                            <form action="/blog" method="POST" enctype="multipart/form-data">
+
+                                <!-- Cover Image -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-semibold">
+                                        Cover Image
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        class="form-control form-control-lg"
+                                        id="coverImageURL"
+                                        name="coverImageURL"
+                                        required>
+
+                                </div>
+
+                                <!-- Title -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-semibold">
+                                        Blog Title
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-lg"
+                                        id="title"
+                                        name="title"
+                                        placeholder="Enter blog title..."
+                                        required>
+
+                                </div>
+
+                                <!-- Body -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-semibold">
+                                        Blog Content
+                                    </label>
+
+                                    <textarea
+                                        class="form-control"
+                                        id="body"
+                                        name="body"
+                                        rows="10"
+                                        placeholder="Write your blog here..."
+                                        required></textarea>
+
+                                </div>
+
+                                <div class="text-center">
+
+                                    <button
+                                        class="btn btn-primary btn-lg rounded-pill px-5">
+
+                                        🚀 Publish Blog
+
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+<%- include('./partials/footer') %>
+    <%- include('./partials/scripts') %>
+
+</body>
+
+</html>

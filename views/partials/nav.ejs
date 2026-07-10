@@ -1,0 +1,188 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold fs-3" href="/">
+      📝 Blogify
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+      <!-- Center Links -->
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link active" href="/">
+            Home
+          </a>
+        </li>
+
+        <% if(locals.user){ %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/add-new">
+              Write Blog
+            </a>
+          </li>
+
+          <% } %>
+
+      </ul>
+
+      <!-- Search -->
+      <form class="d-flex search-form me-3" action="/" method="GET">
+
+        <input class="form-control me-2 rounded-pill" type="search" name="search" placeholder="Search blogs..."
+          value="<%= typeof search !== 'undefined' ? search : '' %>">
+
+        <button class="btn btn-outline-light rounded-pill" type="submit">
+          Search
+        </button>
+
+      </form>
+
+      <% if(locals.user){ %>
+
+        <!-- Logged In -->
+
+        <span class="text-white me-3 fw-semibold">
+          Hi, <%= locals.user.fullName %>
+        </span>
+
+        <div class="dropdown">
+
+          <a class="nav-link dropdown-toggle p-0" href="#" data-bs-toggle="dropdown">
+
+            <img src="<%= locals.user.profileImage %>" width="45" height="45"
+              class="rounded-circle border border-2 border-light" style="object-fit:cover">
+
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+
+            <li>
+              <a class="dropdown-item" href="/blog/add-new">
+                ✍️ Write Blog
+              </a>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item text-danger" href="/user/logout">
+
+                Logout
+
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <% } else { %>
+
+          <!-- Logged Out -->
+
+          <div class="d-flex">
+
+            <a href="/user/signin" class="btn btn-outline-light me-2">
+
+              Sign In
+
+            </a>
+
+            <a href="/user/signup" class="btn btn-primary">
+
+              Create Account
+
+            </a>
+
+          </div>
+
+          <% } %>
+
+    </div>
+
+  </div>
+</nav>
+
+<% if(locals.error){ %>
+
+  <div class="container mt-3">
+
+    <div class="alert alert-danger shadow-sm">
+
+      <%= locals.error %>
+
+    </div>
+
+  </div>
+
+  <% } %>
+    <!-- TOST IMPLEMENTATION -->
+    <% if (locals.success ) { %>
+
+      <div class="toast-container position-fixed top-0 end-0 p-3">
+
+        <div id="liveToast" class="toast show text-bg-success border-0">
+
+          <div class="d-flex">
+
+            <div class="toast-body">
+
+              <% if(locals.success==="published" ){ %>
+                ✅ Blog published successfully!
+                <% } %>
+
+                  <% if(locals.success==="updated" ){ %>
+                    ✏️ Blog updated successfully!
+                    <% } %>
+
+                      <% if(locals.success==="deleted" ){ %>
+                        🗑️ Blog deleted successfully!
+                        <% } %>
+                          <% if (locals.success==="mail" ) { %>
+                            📩 Message sent successfully!
+                            <% } %>
+
+                              <% if (locals.success==="mailerror" ) { %>
+                                ❌ Failed to send message.
+                                <% } %>
+
+            </div>
+
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast">
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <script>
+
+        setTimeout(() => {
+
+          const toast = document.getElementById("liveToast");
+
+          if (toast) {
+            toast.remove();
+          }
+
+        }, 3000);
+
+      </script>
+
+      <% } %>

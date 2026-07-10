@@ -1,0 +1,596 @@
+body{
+    font-family:'Poppins', sans-serif;
+    background:#f5f7fb;
+}
+
+
+/* =========================
+        NAVBAR
+========================= */
+
+.navbar{
+    padding:15px 0;
+    transition:0.3s;
+}
+
+
+.navbar-brand{
+    font-size:28px;
+    font-weight:700;
+}
+
+
+.nav-link{
+    font-size:16px;
+    font-weight:500;
+    margin:0 8px;
+}
+
+
+.nav-link:hover{
+    color:#4f8cff !important;
+}
+
+
+.navbar .form-control{
+    width:240px;
+    border-radius:12px;
+}
+
+
+input.form-control,
+textarea.form-control{
+
+    border-radius:12px;
+    padding:12px;
+
+}
+
+
+.form-control:focus{
+
+    box-shadow:none;
+
+    border-color:#0d6efd;
+
+}
+
+
+.btn{
+    font-weight:500;
+}
+
+
+.dropdown-menu{
+
+    border:none;
+
+    border-radius:15px;
+
+}
+
+
+.dropdown-item{
+
+    padding:10px 18px;
+
+}
+
+
+.dropdown-item:hover{
+
+    background:#f5f7fb;
+
+}
+
+
+
+/* =========================
+        HERO SECTION
+========================= */
+
+
+.hero-section{
+
+    padding:80px 0;
+
+    background:linear-gradient(
+        135deg,
+        #eef4ff,
+        #ffffff
+    );
+
+}
+
+
+.hero-image{
+
+    max-height:420px;
+
+    object-fit:cover;
+
+}
+
+
+
+/* =========================
+        BLOG CARDS
+========================= */
+
+
+.blog-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    height:100%;
+
+    background:white;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s ease;
+
+}
+
+
+
+.blog-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.15);
+
+}
+
+
+
+.blog-image{
+
+    height:230px;
+
+    width:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.card-title{
+
+    min-height:60px;
+
+    line-height:1.5;
+
+}
+
+
+
+.badge{
+
+    width:fit-content;
+
+    border-radius:20px;
+
+    padding:8px 15px;
+
+}
+
+
+
+.btn.rounded-pill{
+
+    padding:8px 18px;
+
+}
+
+
+
+/* =========================
+        BLOG DETAILS
+========================= */
+
+
+.blog-cover{
+
+    max-height:500px;
+
+    width:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.blog-content{
+
+    max-width:900px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    line-height:2;
+
+    color:#444;
+
+}
+
+
+.blog-content p{
+
+    white-space:pre-wrap;
+
+}
+
+
+
+/* =========================
+        COMMENTS
+========================= */
+
+
+textarea{
+
+    resize:none;
+
+    border-radius:15px;
+
+}
+
+
+
+textarea:focus{
+
+    box-shadow:none;
+
+}
+
+
+
+/* =========================
+        ADD BLOG PAGE
+========================= */
+
+
+textarea{
+
+    resize:vertical;
+
+    min-height:250px;
+
+}
+
+
+.card{
+
+    border-radius:20px;
+
+}
+
+
+
+/* =========================
+        FOOTER
+========================= */
+
+
+.footer{
+
+    background:#050505;
+
+    padding:60px 0 25px;
+
+    border-top:1px solid #222;
+
+}
+
+
+
+.footer-text{
+
+    color:#9ca3af;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+}
+
+
+
+.footer h3,
+.footer h5{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/* Links */
+
+
+.footer-link{
+
+    text-decoration:none;
+
+    color:#9ca3af;
+
+    display:inline-block;
+
+    margin-bottom:12px;
+
+    transition:.3s;
+
+}
+
+
+
+.footer-link:hover{
+
+    color:white;
+
+    transform:translateX(6px);
+
+}
+
+
+
+/* Social */
+
+
+.social-links{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.social-link{
+
+    text-decoration:none;
+
+    color:#d1d5db;
+
+    border:1px solid #333;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+
+
+.social-link:hover{
+
+    color:white;
+
+    border-color:#0d6efd;
+
+    box-shadow:
+    0 0 15px rgba(13,110,253,.5);
+
+}
+
+
+
+/* Footer Form */
+
+
+.footer-input{
+
+    background:#111 !important;
+
+    border:1px solid #333 !important;
+
+    color:white !important;
+
+}
+
+
+.footer-input::placeholder{
+
+    color:#777;
+
+}
+
+
+
+.footer-input:focus{
+
+    border-color:#0d6efd !important;
+
+    box-shadow:none !important;
+
+}
+
+
+
+/* Button */
+
+
+.footer-btn{
+
+    background:#0d6efd;
+
+    color:white;
+
+    border-radius:25px;
+
+    padding:10px 25px;
+
+    transition:.3s;
+
+}
+
+
+.footer-btn:hover{
+
+    background:#0b5ed7;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* Bottom */
+
+
+.footer-bottom{
+
+    color:#888;
+
+    font-size:14px;
+
+}
+
+
+
+/* =========================
+        NAVBAR RESPONSIVE
+========================= */
+
+
+.search-form{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+
+.navbar .d-flex{
+
+    gap:10px;
+
+}
+
+
+
+/* Tablet */
+
+@media(max-width:992px){
+
+
+    .navbar-collapse{
+
+        padding-top:20px;
+
+    }
+
+
+    .navbar-nav{
+
+        margin-bottom:20px;
+
+    }
+
+
+    .search-form{
+
+        width:100%;
+
+        margin-bottom:20px;
+
+    }
+
+
+    .search-form .form-control{
+
+        width:100%;
+
+    }
+
+
+}
+
+
+
+/* Mobile */
+
+
+@media(max-width:576px){
+
+
+    .navbar{
+
+        padding:12px 0;
+
+    }
+
+
+    .navbar-brand{
+
+        font-size:24px;
+
+    }
+
+
+    .search-form{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+
+    .search-form .form-control{
+
+        width:100%;
+
+        margin-right:0 !important;
+
+    }
+
+
+    .search-form button{
+
+        width:100%;
+
+    }
+
+
+    .navbar .d-flex{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+
+    .navbar .d-flex .btn{
+
+        width:100%;
+
+    }
+
+
+    .dropdown{
+
+        margin-top:10px;
+
+    }
+
+
+}
