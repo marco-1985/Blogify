@@ -1,14 +1,10 @@
 const chatBtn = document.getElementById("chatBtn");
-
 const chatWindow = document.getElementById("chatWindow");
-
 const sendBtn = document.getElementById("sendBtn");
-
 const messageInput = document.getElementById("messageInput");
-
 const messages = document.getElementById("messages");
 const clearChatBtn = document.getElementById("clearChatBtn");
-
+const aiNavLink = document.getElementById("aiNavLink");
 chatBtn.onclick = () => {
 
     chatWindow.style.display =
@@ -112,6 +108,18 @@ if (messages.innerHTML.trim() === "") {
             Ask me anything about this blog.
         </div>
     `;
+
+}
+
+if (aiNavLink) {
+
+    aiNavLink.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        chatWindow.style.display = "block";
+
+    });
 
 }
 const text = "💬 Ask Chitti";

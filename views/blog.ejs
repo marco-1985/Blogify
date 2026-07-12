@@ -169,60 +169,14 @@
                         <% }) %>
 
         </div>
-        <!-- Floating AI Button -->
+        <%- include('./partials/chatbot') %>
+            <%- include('./partials/footer') %>
+                <%- include('./partials/scripts') %>
+                    <script>
+                        const BLOG_ID = "<%= blog._id %>";
+                    </script>
 
-        <div id="chatLauncher">
-            <div id="chatHint">
-                <span id="typingText"></span>
-            </div>
-
-
-            <div id="chatBtn">
-                <img src="/images/chitti.png" alt="Chitti AI">
-
-            </div>
-
-        </div>
-
-        <!-- Chat Window -->
-
-        <div id="chatWindow"
-            style="display:none;position:fixed;bottom:110px;right:30px;width:370px;height:500px;background:white;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,.2);overflow:hidden;z-index:9999;">
-
-            <div class="bg-primary text-white p-3 d-flex justify-content-between align-items-center">
-
-                <strong>🤖 Chitti AI</strong>
-
-                <button id="clearChatBtn" class="btn btn-sm btn-light text-dark">
-                    🗑 New Chat
-                </button>
-
-            </div>
-
-            <div id="messages" style="height:370px;overflow-y:auto;padding:15px;background:#f8f9fa;">
-
-            </div>
-
-            <div class="p-2 d-flex">
-
-                <input id="messageInput" class="form-control me-2" placeholder="Ask about this blog...">
-
-                <button id="sendBtn" class="btn btn-success">
-
-                    Send
-
-                </button>
-
-            </div>
-
-        </div>
-        <%- include('./partials/footer') %>
-            <%- include('./partials/scripts') %>
-                <script>
-                    const BLOG_ID = "<%= blog._id %>";
-                </script>
-
-                <script src="/js/chatbot.js"></script>
+                    <script src="/js/chatbot.js"></script>
 </body>
 
 </html>

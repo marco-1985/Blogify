@@ -23,8 +23,16 @@
           <a class="nav-link active" href="/">
             Home
           </a>
+        <li class="nav-item">
+          <a class="nav-link active" href="/#blogs">
+            Blogs
+          </a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="aiNavLink">
+            AI Assistant
+          </a>
+        </li>
         <% if(locals.user){ %>
 
           <li class="nav-item">
@@ -34,9 +42,13 @@
           </li>
 
           <% } %>
-
+            <li class="nav-item">
+              <a class="nav-link active" href="/#contact">
+                Contact Us
+              </a>
       </ul>
 
+      </li>
       <!-- Search -->
       <form class="d-flex search-form me-3" action="/" method="GET">
 

@@ -1,8 +1,11 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #f5f7fb;
 }
-
 
 /* =========================
         NAVBAR
@@ -24,6 +27,7 @@ body {
     font-size: 16px;
     font-weight: 500;
     margin: 0 8px;
+    color: white;
 }
 
 
@@ -607,7 +611,7 @@ textarea {
     cursor: pointer;
     z-index: 99999;
 
-    background:transparent;
+    background: transparent;
 
     animation: floating 3s ease-in-out infinite;
     transition: transform .3s ease;
@@ -625,7 +629,8 @@ textarea {
 
     filter: drop-shadow(0 8px 20px rgba(0, 170, 255, 0.35));
 }
-#chatHint{
+
+#chatHint {
     position: absolute;
     bottom: 105%;
     right: 10px;
@@ -637,7 +642,7 @@ textarea {
 
     border-radius: 20px;
 
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
 
     font-size: 14px;
     font-weight: 600;
@@ -645,19 +650,19 @@ textarea {
     white-space: nowrap;
 }
 
-#chatHint::after{
-    content:"";
+#chatHint::after {
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    bottom:-8px;
-    right:20px;
+    bottom: -8px;
+    right: 20px;
 
-    border-width:8px 8px 0;
+    border-width: 8px 8px 0;
 
-    border-style:solid;
+    border-style: solid;
 
-    border-color:white transparent transparent;
+    border-color: white transparent transparent;
 }
 @keyframes floating {
     0% {
