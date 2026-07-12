@@ -22,6 +22,8 @@ app.use(express.static(path.resolve('./public')))
 app.use("/user", UserRoute);
 app.use("/blog", blogRoute);
 app.use(express.static(path.resolve("./public")));
+app.use(express.json());
+app.use("/ai", require("./routes/ai"));
 app.get("/", async (req, res) => {
 
   const search = req.query.search || "";
