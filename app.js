@@ -66,43 +66,27 @@ app.get("/", async (req, res) => {
 
 });
 app.post("/contact", async (req, res) => {
-
   try {
-
     const { email, message } = req.body;
 
-
-    await transporter.sendMail({
-
-      from: process.env.EMAIL_USER,
-
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: "karank47417@gmail.com",
-
       replyTo: email,
-
       subject: "New Message From Blogify",
-
       text: `
-            Visitor Email:
-            ${email}
+Visitor Email: ${email}
 
-
-            Message:
-            ${message}
-            `
-
+Message:
+${message}
+      `,
     });
+
     return res.redirect("/?success=mail");
-
-  }
-  catch (error) {
-
-    console.log(error);
-
+  } catch (error) {
+    console.error(error);
     return res.redirect("/?success=mailerror");
-
   }
-
 });
 app.get("/test", async (req, res) => {
   try {
