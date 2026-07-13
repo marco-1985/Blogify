@@ -677,3 +677,50 @@ textarea {
         transform: translateY(0px);
     }
 }
+/* SweetAlert Popup */
+
+.login-popup{
+    background: rgba(25,25,25,.88) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    color: #fff !important;
+}
+
+.login-title{
+    color:#fff !important;
+}
+
+.swal2-html-container{
+    color:#d6d6d6 !important;
+}
+
+.login-btn{
+    background:#0d6efd !important;
+    border-radius:10px !important;
+    padding:10px 22px !important;
+    font-weight:600 !important;
+}
+
+.swal2-icon{
+    border-color:#0d6efd !important;
+}
+
+.swal2-backdrop-show{
+    backdrop-filter: blur(6px);
+}
+.login-email{
+    background: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+.login-email::placeholder{
+    color: rgba(255,255,255,0.6);
+}
+
+.login-email:focus{
+    background: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    box-shadow: none;
+}

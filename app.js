@@ -66,9 +66,14 @@ app.get("/", async (req, res) => {
 
 });
 app.post("/contact", async (req, res) => {
-  try {
-    const { email, message } = req.body;
+  if (!req.user) {
 
+    return res.redirect("/user/signin");
+
+  }
+  try {
+    const email = req.user.email;
+    const { message } = req.body;
     await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "karank47417@gmail.com",
