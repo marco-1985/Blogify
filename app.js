@@ -71,7 +71,7 @@ app.post("/contact", async (req, res) => {
 
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "nicolates1711@gmail.com",
+      to: "karank47417@gmail.com",
       replyTo: email,
       subject: "New Message From Blogify",
       text: `
