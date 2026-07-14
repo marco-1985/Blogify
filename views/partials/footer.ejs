@@ -108,29 +108,3 @@
 
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-const form = document.getElementById("contact");
-
-const isLoggedIn = "<%= locals.user ? 'true' : 'false' %>";
-
-form.addEventListener("submit", function (e) {
-
-    if (isLoggedIn === "false") {
-
-        e.preventDefault();
-
-        Swal.fire({
-            title: "Login Required",
-            text: "Please login first to send a message.",
-            icon: "warning",
-            confirmButtonText: "Login"
-        }).then(() => {
-            window.location.href = "/user/signin";
-        });
-
-    }
-
-});
-</script>
