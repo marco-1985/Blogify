@@ -60,7 +60,9 @@ router.get("/reset-password/:token",async(req,res)=>{
     if(!user){
         return res.send("Reset link is invalid or expired.");
     }
-    res.render("resetPassword");
+    res.render("resetPassword",{
+        token:req.params.token
+    });
 });
 router.post("/reset-password/:token",async(req,res)=>{
     const user=await User.findOne({
