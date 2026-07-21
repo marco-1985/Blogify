@@ -26,9 +26,11 @@ router.post("/signin",async(req,res)=>{
 router.get("/logout",(req,res)=>{
  res.clearCookie("token").redirect("/")
 })
-router.get('/forgot-password',(req,res)=>{
-    res.render("forgotPassword");
-})
+router.get("/forgot-password", (req, res) => {
+    res.render("forgotPassword", {
+        success: req.query.success,
+    });
+});
 router.post("/forgot-password",async(req,res)=>{
     try{
 const {email}=req.body;
@@ -44,11 +46,35 @@ const {email}=req.body;
     await user.save();
     const resetLink = `${process.env.BASE_URL}/user/reset-password/${token}`;
     await sendResetPasswordEmail(user.email,user.fullName,resetLink);
-    return res.send("Reset link sent successfully");
+    return res.redirect("/user/forgot-password?success=1");
     }catch(err){
     console.log(err);
     return res.status(500).send("Internal server error");
     }
+})
+router.get("/reset-password/:token",async(req,res)=>{
+    const user=await User.findOne({
+        resetPasswordToken:req.params.token,
+        resetPasswordExpires:{$gt:Date.now()},
+    });
+    if(!user){
+        return res.send("Reset link is invalid or expired.");
+    }
+    res.render("resetPassword");
+});
+router.post("/reset-password/:token",async(req,res)=>{
+    const user=await User.findOne({
+        resetPasswordToken:req.params.token,
+        resetPasswordExpires:{$gt:Date.now()},
+    });
+    if(!user){
+        return res.send("Invalid or expired token");
+    }
+    user.password=req.body.password;
+    user.resetPasswordToken=undefined;
+    user.resetPasswordExpires=undefined;
+    await user.save();
+    res.redirect("/user/signin");
 })
 router.post('/signup',async(req,res)=>{
     const {fullName,email,password}=req.body;

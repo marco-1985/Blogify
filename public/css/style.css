@@ -845,14 +845,6 @@ textarea {
     font-weight: 600 !important;
 }
 
-.swal2-icon {
-    border-color: #0d6efd !important;
-}
-
-.swal2-backdrop-show {
-    backdrop-filter: blur(6px);
-}
-
 .login-email {
     background: rgba(255, 255, 255, 0.08) !important;
     color: #fff !important;

@@ -142,8 +142,9 @@
   </div>
 
   <% } %>
-    <!-- TOST IMPLEMENTATION -->
-    <% if (locals.success ) { %>
+    <!-- TOAST IMPLEMENTATION -->
+    <% if ( locals.success==="published" || locals.success==="updated" || locals.success==="deleted" ||
+      locals.success==="mail" || locals.success==="mailerror" ) { %>
 
       <div class="toast-container position-fixed top-0 end-0 p-3">
 
@@ -153,17 +154,18 @@
 
             <div class="toast-body">
 
-              <% if(locals.success==="published" ){ %>
+              <% if (locals.success==="published" ) { %>
                 ✅ Blog published successfully!
                 <% } %>
 
-                  <% if(locals.success==="updated" ){ %>
+                  <% if (locals.success==="updated" ) { %>
                     ✏️ Blog updated successfully!
                     <% } %>
 
-                      <% if(locals.success==="deleted" ){ %>
+                      <% if (locals.success==="deleted" ) { %>
                         🗑️ Blog deleted successfully!
                         <% } %>
+
                           <% if (locals.success==="mail" ) { %>
                             📩 Message sent successfully!
                             <% } %>
@@ -184,20 +186,17 @@
       </div>
 
       <script>
-
         setTimeout(() => {
-
           const toast = document.getElementById("liveToast");
 
           if (toast) {
             toast.remove();
           }
+
           if (window.location.search.includes("success=")) {
             window.history.replaceState({}, document.title, window.location.pathname);
           }
-
         }, 3000);
-
       </script>
 
       <% } %>
