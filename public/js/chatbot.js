@@ -122,7 +122,7 @@ if (aiNavLink) {
     });
 
 }
-const text = "💬 Ask Chitti";
+const text = "Ask Chitti";
 
 const typingText = document.getElementById("typingText");
 
