@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
     try{
        await resend.emails.send({
             from:"onboarding@resend.dev",
-            to:user.email,
+            to:email,
             subject:"Reset Your Password",
             html:`
             <h2>Hello ${fullName},</h2>
