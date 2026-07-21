@@ -27,6 +27,12 @@ const userSchema = new Schema({
         enum: ["USER", "ADMIN"],
         default: 'USER',
     },
+    resetPasswordToken:{
+        type:String,
+    },
+    resetPasswordExpires:{
+        type:Date,
+    },
 
 }, { timestamps: true });
 userSchema.pre("save",async function(){

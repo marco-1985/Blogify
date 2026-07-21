@@ -20,7 +20,6 @@ app.set('views', path.resolve('./views'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"))
-app.use(express.static(path.resolve('./public')))
 app.use("/user", UserRoute);
 app.use("/blog", blogRoute);
 app.use(express.static(path.resolve("./public")));
